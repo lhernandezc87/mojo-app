@@ -15,14 +15,6 @@ export function loadTickets(page=1) {
   }
 }
 
-export function loadingTickets(state){
-  return {
-    type: 'LOADING_TICKETS',
-    payload: state
-  }
-}
-
-
 function getUrlJsonPaginated(page){
   return (tickets_url_json + '\&per_page=' + tickets_per_page + '\&page=' + page);
 }

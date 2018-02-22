@@ -5,6 +5,7 @@ import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
 
 import './index.css';
+import 'bootstrap/dist/css/bootstrap.css';
 import store from './store';
 import history from './history';
 import TicketsDashboard from './components/TicketsDashboard';
@@ -29,7 +30,7 @@ const Appi = () => (
 
 ReactDOM.render(
   <Provider store={store}>
-	<Appi />, document.getElementById('root')
-  </Provider>	
+	  <Appi />
+  </Provider>, document.getElementById('root')	
 );
 registerServiceWorker();

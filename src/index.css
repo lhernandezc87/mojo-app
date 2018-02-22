@@ -3,3 +3,65 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.dashboard {
+  width: 100%;
+  text-align: center;
+  padding-top: 25px;
+  padding-bottom: 30px;
+}
+
+.searchform {
+  margin: 25px;
+}
+
+.ticketsContainer {
+  padding-top: 5px;	
+  margin: 15px;
+}
+
+.headerColumnTableText {
+  flex-grow: 1;
+  width: 75%;
+}
+
+.sortColumntableIcons {
+	flex-grow: 1;
+	margin-left: 10px;
+	width: 32px;
+
+}
+
+#upSortTableIcon {
+  height: 26px;
+  width: 26px;
+}
+
+#downSortTableIcon {	
+  height: 26px;
+  width: 26px;
+}
+
+
+.tableHeaders {
+  display: flex;
+  font-size: 14pt;
+  text-align: center;
+}
+
+.headerColumnTable {
+  display: inline-flex;
+  flex-grow: 1;
+  padding: 12px;
+  border: 1px solid red;
+  padding-left: 20px;
+}
+
+.headerColumnTableCustom {
+  display: inline-flex;
+  flex-grow: 1;
+  padding: 10px;
+  padding-left: 18px;
+  border: 1px solid red;
+}
+

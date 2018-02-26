@@ -1,62 +1,44 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Table } from 'reactstrap';
 
-import HeadersTable from './HeadersTable';
-import RowsTable from './RowsTable';
+import HeaderColumn from './HeaderColumn';
+import TicketRow from './TicketRow';
 
 export default class TicketsTable extends React.Component {
 
-	state = {
-		headers: {
-			id: '',
-			title: '',
-			updated_on: '',
-			assigned_on: '',
-			assigned_to_id: '',
-			cc: '',
-			company_id: '',
-			created_from: '',
-			created_on: '',
-			description: '',
-			due_on: '',
-			first_assigned_on: '',
-			is_attention_required: '',
-			legacy_id: '',
-			priority_id: '',
-			rated_on: '',
-			rating: '',
-			scheduled_on: '',
-			solved_on: '',
-			status_changed_on: '',
-			status_id: '',
-			ticket_form_id: '',
-			ticket_queue_id: '',
-			ticket_type_id: '',
-			user_attention_id: '',
-			user_id: '',
-			custom_field_category_sr: '',
-			custom_field_impact_sr: '',
-			custom_field_request: '',
-			custom_field_urgency_sr: '',
-			custom_field_workplace_sr: ''
-		}
-	}
 
   handleOnSort = (column, dirrection) => {
   	console.log(column, dirrection);
   }
 
   render(){
+    const headers = tableHeaders.map((header) => (
+      <HeaderColumn 
+        key={header}
+        column={header}
+        onSortClick={this.handleOnSort}
+      />
+    ));
+
+
+    const rows = ticketsdata.map((ticket) => (
+      <TicketRow
+        key={ticket.id}
+        data={ticket}
+      />
+    ));
   	return(
-  		<div>
-  			<HeadersTable 
-  			  headers={this.state.headers}
-  			  onSortClick={this.handleOnSort}
-  			/>
-  			<RowsTable 
-  			  tickets={ticketsdata}
-  			/>
-  		</div>
+  		<Table dark hover>
+        <thead>
+          <tr>
+            {headers}
+          </tr>
+          </thead>
+        <tbody>  			
+          {rows}
+        </tbody> 
+  		</Table>
   	)
   }
 
@@ -66,6 +48,13 @@ TicketsTable.propTypes = {
   pageNumber: PropTypes.number,
   tickets: PropTypes.array.isRequired
 }
+
+const tableHeaders = ['id', 'title', 'updated_on', 'assigned_on', 'assigned_to_id', 'cc', 'company_id',
+      'created_from', 'created_on', 'description', 'due_on', 'first_assigned_on', 'is_attention_required',
+      'legacy_id', 'priority_id', 'rated_on', 'rating', 'scheduled_on', 'solved_on', 'status_changed_on',
+      'status_id', 'ticket_form_id', 'ticket_queue_id', 'ticket_type_id', 'user_attention_id', 'user_id', 
+      'custom_field_category_sr', 'custom_field_impact_sr', 'custom_field_request', 'custom_field_urgency_sr',
+      'custom_field_workplace_sr'];
 
 const ticketsdata = [
     {
@@ -136,3 +125,4 @@ const ticketsdata = [
             "custom_field_workplace_sr": "San Carlos"
         
     }]
+      

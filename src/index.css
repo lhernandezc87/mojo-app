@@ -18,11 +18,14 @@ body {
 .ticketsContainer {
   padding-top: 5px;	
   margin: 15px;
+  font-size: 9pt;
 }
 
 .headerColumnTableText {
   flex-grow: 1;
   width: 75%;
+  padding-top: 15px;
+  font-size: 16pt;
 }
 
 .sortColumntableIcons {
@@ -53,7 +56,6 @@ body {
   display: inline-flex;
   flex-grow: 1;
   padding: 12px;
-  border: 1px solid red;
   padding-left: 20px;
 }
 
@@ -62,6 +64,28 @@ body {
   flex-grow: 1;
   padding: 10px;
   padding-left: 18px;
-  border: 1px solid red;
 }
 
+.headerColumnTableTitle {
+  display: inline-flex;
+  flex-grow: 1;
+  padding: 12px;
+  padding-left: 20px;
+  width: 400px;
+}
+
+.headerColumnTableDescription {
+  display: inline-flex;
+  flex-grow: 1;
+  padding: 12px;
+  padding-left: 20px;
+  width: 400px;
+}
+
+.highlightColumnDesc {
+  background-color: #b30000; 
+}
+
+.highlightColumnAsc {
+  background-color: #008060; 
+}

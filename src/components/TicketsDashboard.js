@@ -12,6 +12,13 @@ import TicketsTable from './ticketsTable/TicketsTable';
 
 class TicketsDashboard extends React.Component {
 
+  handleUpdateSelectedColumn = (column) => {
+    this.props.updateSelectedColumn(column);
+  }
+
+  handleupdateSortDirection = (dirrection) => {
+    this.props.updateSortDirection(dirrection);
+  }
 
   render(){
   	return (
@@ -22,6 +29,10 @@ class TicketsDashboard extends React.Component {
   	    <div className="ticketsContainer">
   	      <TicketsTable 
             tickets={this.props.tickets}
+            selectedColumn={this.props.selectedColumn}
+            sortDirection={this.props.sortDirection}
+            updateSortDirection={this.handleupdateSortDirection}
+            updateSelectedColumn={this.handleUpdateSelectedColumn}
   	      />
   	    </div>
   	  </div>  

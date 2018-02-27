@@ -18,21 +18,19 @@ body {
 .ticketsContainer {
   padding-top: 5px;	
   margin: 15px;
-  font-size: 9pt;
+  font-size: 8pt;
 }
 
 .headerColumnTableText {
-  flex-grow: 1;
-  width: 75%;
+  width: 200px;
   padding-top: 15px;
-  font-size: 16pt;
+  font-size: 1.1rem;
 }
 
 .sortColumntableIcons {
-	flex-grow: 1;
 	margin-left: 10px;
-	width: 32px;
-
+	width: 44px;
+  height: 70px;
 }
 
 #upSortTableIcon {
@@ -40,46 +38,72 @@ body {
   width: 26px;
 }
 
+#upSortTableIcon:hover {
+  height: 38px;
+  width: 38px;
+}
+
 #downSortTableIcon {	
   height: 26px;
   width: 26px;
 }
 
+#downSortTableIcon:hover {
+  height: 38px;
+  width: 38px;
+}
 
 .tableHeaders {
-  display: flex;
-  font-size: 14pt;
+  display: inline-flex;
   text-align: center;
 }
 
 .headerColumnTable {
   display: inline-flex;
   flex-grow: 1;
-  padding: 12px;
-  padding-left: 20px;
+  padding-top: 12px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-right: 2px solid #737373; 
 }
 
 .headerColumnTableCustom {
   display: inline-flex;
   flex-grow: 1;
-  padding: 10px;
-  padding-left: 18px;
+  padding-left: 5px;
+  width: 100%;
+  border-right: 2px solid #737373;
+  padding-right: 5px;
 }
 
 .headerColumnTableTitle {
   display: inline-flex;
   flex-grow: 1;
-  padding: 12px;
+  padding-top: 12px;
   padding-left: 20px;
-  width: 400px;
+  width: 300px;
+  border-right: 2px solid #737373;
+  padding-right: 5px;
+}
+
+.headerColumnTableId {
+  display: inline-flex;
+  flex-grow: 1;
+  padding-top: 12px;
+  padding-left: 20px;
+  width: 85px;
+  border-right: 2px solid #737373;
+  padding-right: 5px;
 }
 
 .headerColumnTableDescription {
   display: inline-flex;
   flex-grow: 1;
-  padding: 12px;
+  padding-top: 12px;
   padding-left: 20px;
   width: 400px;
+  border-right: 2px solid #737373;
+  padding-right: 5px;
 }
 
 .highlightColumnDesc {

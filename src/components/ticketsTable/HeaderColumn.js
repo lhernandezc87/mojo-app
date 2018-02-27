@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 
 export default class HeaderColumn extends React.Component {
   
@@ -11,13 +12,26 @@ export default class HeaderColumn extends React.Component {
   	this.props.onSortClick(this.props.column, 'desc');
   }
 
+  getColumnCss(column, selectedColumn, direction){
+    var divClass = 'headerColumnTable';
+    if (column.includes('Custom')) { divClass = divClass + 'Custom'; }
+    if (column.includes('Title')) { divClass = divClass + 'Title'; }
+    if (column.includes('Description')) { divClass = divClass + 'Description'; }
+    if (_.startsWith(column, 'Id')) { divClass = divClass + 'Id'; }
+
+    return divClass;
+  }
+
+  isHighlightedColumn(column, selectedColumn, direction){
+    if ((column === selectedColumn) && (direction === 'asc')) { return ' highlightColumnAsc';}
+    if ((column === selectedColumn) && (direction === 'desc')) { return ' highlightColumnDesc';}
+    return '';
+  }
+
   render(){
-  	var divClass = 'headerColumnTable'
-  	if (this.props.column.includes('custom')) {divClass = divClass + 'Custom'; }
-    if (this.props.column.includes('title')) {divClass = divClass + 'Title highlightColumnAsc'; }
-    if (this.props.column.includes('description')) {divClass = divClass + 'Description'; }
+  	var divClass = this.getColumnCss(this.props.column, this.props.selectedColumn, this.props.sortDirection);
     return(
-      <th>
+      <th className={this.isHighlightedColumn(this.props.column, this.props.selectedColumn, this.props.sortDirection)}>
         <div className={divClass}>
           <div className="headerColumnTableText">
             { this.props.column }
@@ -44,5 +58,7 @@ export default class HeaderColumn extends React.Component {
 
 HeaderColumn.propTypes = {
   onSortClick: PropTypes.func.isRequired,
-  column: PropTypes.string.isRequired
+  column: PropTypes.string.isRequired,
+  selectedColumn: PropTypes.string,
+  sortDirection: PropTypes.string
 }

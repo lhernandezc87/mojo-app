@@ -1,6 +1,6 @@
-export default function selectedColumn(state = 'id', action) {
+export default function selectedColumn(state = '', action) {
   switch (action.type){
-    case 'UPDATE_SORTDIRECTION': {
+    case 'UPDATE_SELECTEDCOLUMN': {
       return action.payload;
     }  
     default:

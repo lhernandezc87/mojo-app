@@ -1,4 +1,4 @@
-export function updateSortDirection(direction='Desc') {
+export function updateSortDirection(direction='') {
   return {
     type: 'UPDATE_SORTDIRECTION',
     payload: direction

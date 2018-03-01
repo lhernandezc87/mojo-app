@@ -1,4 +1,4 @@
-export function loadingTickets(state){
+export function loadingTickets(state=false){
   return {
     type: 'LOADING_TICKETS',
     payload: state

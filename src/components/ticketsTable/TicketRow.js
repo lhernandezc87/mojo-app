@@ -11,7 +11,7 @@ export default class TicketRow extends React.Component {
   		<TicketRowColumn
   		  key={column}
   		  column={column}
-  		  data={data[_.snakeCase(column)]}
+  		  data={_.toString(data[_.snakeCase(column)])}
   		  selectedColumn={this.props.selectedColumn}
   		  sortDirrection={this.props.sortDirrection}
   		/>

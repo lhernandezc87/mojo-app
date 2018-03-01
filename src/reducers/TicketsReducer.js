@@ -1,6 +1,6 @@
 export default function tickets(state = [], action) {
   switch (action.type){
-    case 'LOAD_TICKET': {
+    case 'LOAD_TICKETS': {
       if (!action.error) {
         return action.payload;
       }

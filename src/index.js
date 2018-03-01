@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import registerServiceWorker from './registerServiceWorker';
-import { BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
+import { Router, Switch, Route, Redirect} from 'react-router-dom';
 
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';

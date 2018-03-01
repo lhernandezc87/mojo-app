@@ -12,6 +12,14 @@ import TicketsTable from './ticketsTable/TicketsTable';
 
 class TicketsDashboard extends React.Component {
 
+  componentDidMount(){
+    this.props.loadTickets(this.props.pageNumber);
+  }
+
+  handleOnLoadTickets = (page) => {
+    this.props.loadTickets(page);
+  }
+
   handleUpdateSelectedColumn = (column) => {
     this.props.updateSelectedColumn(column);
   }
@@ -59,7 +67,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   updatePageNumber: (page) => { dispatch(updatePageNumber(page)) },
-  loadTickets: (page) => { dispatch(loadTickets(page)) },
+  loadTickets: (page, column, dirrection) => { dispatch(loadTickets(page, column, dirrection)) },
   loadingTickets: (state) => { dispatch(loadingTickets(state)) },
   updateSortDirection: (direction) => { dispatch(updateSortDirection(direction)) },
   updateSelectedColumn: (column) => { dispatch(updateSelectedColumn(column)) }

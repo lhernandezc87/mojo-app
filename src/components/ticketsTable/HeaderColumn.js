@@ -41,13 +41,13 @@ export default class HeaderColumn extends React.Component {
               className="upSortTableIcon"
               onClick={this.handleSortUpClick}
             >
-              <img src={require('../../images/sort-up-icon.ico')} id="upSortTableIcon" />
+              <img src={require('../../images/sort-up-icon.ico')} id="upSortTableIcon" alt='Sort Up' />
             </span>
             <span
               className="downSortTableIcon"
               onClick={this.handleSortDownClick}
             >
-               <img src={require('../../images/sort-down-red.png')} id="downSortTableIcon" />
+               <img src={require('../../images/sort-down-red.png')} id="downSortTableIcon" alt='Sort Down'/>
             </span> 
           </div>
         </div>

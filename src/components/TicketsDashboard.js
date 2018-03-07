@@ -16,16 +16,21 @@ class TicketsDashboard extends React.Component {
     this.props.loadTickets(this.props.pageNumber);
   }
 
-  handleOnLoadTickets = (page) => {
-    this.props.loadTickets(page);
-  }
-
   handleUpdateSelectedColumn = (column) => {
     this.props.updateSelectedColumn(column);
   }
 
-  handleupdateSortDirection = (dirrection) => {
+  handleUpdateSortDirection = (dirrection) => {
     this.props.updateSortDirection(dirrection);
+  }
+
+  handleUpdatePageNumber = (page) => {
+    this.props.updatePageNumber(page);
+    this.props.loadTickets(page);
+  }
+
+  handleLoadTickets = (page, column, dirrection) => {
+     this.props.loadTickets(page, column, dirrection);
   }
 
   render(){
@@ -37,10 +42,14 @@ class TicketsDashboard extends React.Component {
   	    <div className="ticketsContainer">
   	      <TicketsTable 
             tickets={this.props.tickets}
+            loadTickets={this.handleLoadTickets}
+            pageNumber={this.props.pageNumber}
             selectedColumn={this.props.selectedColumn}
             sortDirection={this.props.sortDirection}
-            updateSortDirection={this.handleupdateSortDirection}
+            updateSortDirection={this.handleUpdateSortDirection}
             updateSelectedColumn={this.handleUpdateSelectedColumn}
+            updatePageNumber={this.handleUpdatePageNumber}
+            loadingTickets={this.props.loadingTickets}
   	      />
   	    </div>
   	  </div>  
@@ -51,7 +60,7 @@ class TicketsDashboard extends React.Component {
 TicketsDashboard.propTypes = {
   updatePageNumber: PropTypes.func,
   loadTickets: PropTypes.func,
-  loadingTickets: PropTypes.func,
+  loadingTickets: PropTypes.bool,
   updateSelectedColumn: PropTypes.func,
   updateSortDirection: PropTypes.func
 };
@@ -68,7 +77,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   updatePageNumber: (page) => { dispatch(updatePageNumber(page)) },
   loadTickets: (page, column, dirrection) => { dispatch(loadTickets(page, column, dirrection)) },
-  loadingTickets: (state) => { dispatch(loadingTickets(state)) },
+  updateLoadingTickets: (state) => { dispatch(loadingTickets(state)) },
   updateSortDirection: (direction) => { dispatch(updateSortDirection(direction)) },
   updateSelectedColumn: (column) => { dispatch(updateSelectedColumn(column)) }
 });

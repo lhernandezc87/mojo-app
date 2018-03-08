@@ -7,12 +7,27 @@ body {
 .dashboard {
   width: 100%;
   text-align: center;
-  padding-top: 25px;
   padding-bottom: 30px;
 }
 
 .searchform {
-  margin: 25px;
+  padding-top: 11px;
+  border: solid 1px gray;
+  margin-left: 15px;
+}
+
+.searchformButtons {
+  display: inline-flex;
+}
+
+.dividerButtons{
+    width:5px;
+    height:auto;
+    display:inline-block;
+}
+
+.dropdownItem:hover {
+  background: red;
 }
 
 .ticketsContainer {
@@ -23,14 +38,13 @@ body {
 
 .headerColumnTableText {
   width: 200px;
-  padding-top: 15px;
+  padding-top: 10px;
   font-size: 1.2rem;
 }
 
 .sortColumntableIcons {
 	margin-left: 10px;
 	width: 44px;
-  height: 70px;
 }
 
 #upSortTableIcon {
@@ -61,7 +75,7 @@ body {
 .headerColumnTable {
   display: inline-flex;
   flex-grow: 1;
-  padding-top: 12px;
+  padding-top: 1px;
   padding-left: 5px;
   padding-right: 5px;
   border-right: 2px solid #737373; 
@@ -79,7 +93,7 @@ body {
 .headerColumnTableTitle {
   display: inline-flex;
   flex-grow: 1;
-  padding-top: 12px;
+  padding-top: 1px;
   padding-left: 20px;
   width: 300px;
   border-right: 2px solid #737373;

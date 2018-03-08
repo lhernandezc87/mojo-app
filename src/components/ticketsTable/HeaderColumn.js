@@ -23,8 +23,8 @@ export default class HeaderColumn extends React.Component {
   }
 
   isHighlightedColumn(column, selectedColumn, direction){
-    if ((column === selectedColumn) && (direction === 'asc')) { return ' highlightColumnAsc';}
-    if ((column === selectedColumn) && (direction === 'desc')) { return ' highlightColumnDesc';}
+    if ((column === selectedColumn) && (direction === 'asc')) { return 'highlightColumnAsc';}
+    if ((column === selectedColumn) && (direction === 'desc')) { return 'highlightColumnDesc';}
     return '';
   }
 

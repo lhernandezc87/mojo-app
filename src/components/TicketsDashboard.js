@@ -9,6 +9,7 @@ import { updateSelectedColumn } from '../actions/SelectedColumnActions';
 import { updateSortDirection } from '../actions/SortDirectionActions';
 
 import TicketsTable from './ticketsTable/TicketsTable';
+import SearchForm from './searchForm/SearchForm';
 
 class TicketsDashboard extends React.Component {
 
@@ -37,7 +38,9 @@ class TicketsDashboard extends React.Component {
   	return (
   	  <div className="dashboard">
   	    <div className="searchform">
-  	      <h1> buscador </h1>
+  	      <SearchForm
+            columns={tableHeadersAll}
+          />
   	    </div>
   	    <div className="ticketsContainer">
   	      <TicketsTable 
@@ -65,7 +68,6 @@ TicketsDashboard.propTypes = {
   updateSortDirection: PropTypes.func
 };
 
-
 const mapStateToProps = (state) => ({
   tickets: state.tickets,
   pageNumber: state.pageNumber,
@@ -81,5 +83,12 @@ const mapDispatchToProps = (dispatch) => ({
   updateSortDirection: (direction) => { dispatch(updateSortDirection(direction)) },
   updateSelectedColumn: (column) => { dispatch(updateSelectedColumn(column)) }
 });
+
+const tableHeadersAll = ['Id', 'Title', 'updated_on', 'assigned_on', 'assigned_to_id', 'cc', 'company_id',
+      'created_from', 'created_on', 'description', 'due_on', 'first_assigned_on', 'is_attention_required',
+      'legacy_id', 'priority_id', 'rated_on', 'rating', 'scheduled_on', 'solved_on', 'status_changed_on',
+      'status_id', 'ticket_form_id', 'ticket_queue_id', 'ticket_type_id', 'user_attention_id', 'user_id', 
+      'custom_field_category_sr', 'custom_field_impact_sr', 'custom_field_request', 'custom_field_urgency_sr',
+      'custom_field_workplace_sr']; 
 
 export default connect(mapStateToProps, mapDispatchToProps)(TicketsDashboard);

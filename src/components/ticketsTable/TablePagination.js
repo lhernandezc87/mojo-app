@@ -3,20 +3,15 @@ import { Pagination, PaginationItem, PaginationLink } from "reactstrap";
 import PropTypes from 'prop-types';
 
     let prev  = 0;
-    let next  = 0;
     let last  = 0;
-    let first = 0;
 
 export default class TablePagination extends React.Component {
 
-  constructor() {
-    super();
-    this.state = {
+    state = {
       totals: 120,
       currentPage: 1,
       PerPage: 12,
     };
-  }
 
   componentDidMount(){
     this.setState({currentPage: this.props.currentPage});
@@ -55,19 +50,13 @@ export default class TablePagination extends React.Component {
      let { totals, currentPage, PerPage } = this.state;
 
      // Logic for displaying current todos
-     let indexOfLast = currentPage * PerPage;
-     let indexOfFirst = indexOfLast - PerPage;
       prev  = currentPage > 0 ? (currentPage -1) :0;
       last = Math.ceil(totals/PerPage);
-      next  = (last === currentPage) ?currentPage: currentPage +1;
-
      // Logic for displaying page numbers
      let pageNumbers = [];
      for (let i = 1; i <=last; i++) {
        pageNumbers.push(i);
      }
-
-
 
       return (
        <div className={this.props.loadingTickets ? 'disabledDiv' : ''}>

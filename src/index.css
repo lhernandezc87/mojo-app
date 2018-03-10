@@ -12,8 +12,9 @@ body {
 
 .searchform {
   padding-top: 11px;
-  border: solid 1px gray;
+  border-bottom: solid 3px gray;
   margin-left: 15px;
+  background: #f2f2f2;
 }
 
 .searchformButtons {
@@ -26,20 +27,44 @@ body {
     display:inline-block;
 }
 
-.dropdownItem:hover {
-  background: red;
+.searchDropDownDiv{
+  width: 28%;
+  display: inline-flex;
+}
+
+.searchDropDownDivText{
+  display: inline-block;
+  width: 50%;
+  margin-left: 25px;
+  margin-top: 7px;
+}
+
+.dropdown .dropdown-menu .dropdownItem:hover{
+  cursor: pointer;
+  background: gray;
+}
+
+.loadingLogo{
+  display: inline-flex;
+  padding-left: 175px;
+  height: 35px;
+  width: 38px;
+}
+
+.nonVisibleLogo{
+  display: none;
 }
 
 .ticketsContainer {
   padding-top: 5px;	
   margin: 15px;
-  font-size: 7pt;
+  font-size: 0.65rem;
 }
 
 .headerColumnTableText {
-  width: 200px;
+  width: 180px;
   padding-top: 10px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 .sortColumntableIcons {
@@ -53,8 +78,8 @@ body {
 }
 
 #upSortTableIcon:hover {
-  height: 38px;
-  width: 38px;
+  height: 32px;
+  width: 32px;
 }
 
 #downSortTableIcon {	
@@ -63,8 +88,8 @@ body {
 }
 
 #downSortTableIcon:hover {
-  height: 38px;
-  width: 38px;
+  height: 32px;
+  width: 32px;
 }
 
 .tableHeaders {
@@ -93,9 +118,9 @@ body {
 .headerColumnTableTitle {
   display: inline-flex;
   flex-grow: 1;
-  padding-top: 1px;
+  padding-top: 12px;
   padding-left: 20px;
-  width: 300px;
+  width: 280px;
   border-right: 2px solid #737373;
   padding-right: 5px;
 }
@@ -110,14 +135,52 @@ body {
   padding-right: 5px;
 }
 
+.headerColumnTableUserId {
+  display: inline-flex;
+  flex-grow: 1;
+  padding-top: 12px;
+  padding-left: 2px;
+  width: 115px;
+  border-right: 2px solid #737373;
+  padding-right: 5px;
+}
+
+.headerColumnTableStatusId {
+  display: inline-flex;
+  flex-grow: 1;
+  padding-top: 12px;
+  padding-left: 2px;
+  width: 130px;
+  border-right: 2px solid #737373;
+  padding-right: 5px;
+}
+
+.headerColumnTableAssignedToId {
+  display: inline-flex;
+  flex-grow: 1;
+  padding-top: 1px;
+  padding-left: 2px;
+  width: 180px;
+  border-right: 2px solid #737373;
+  padding-right: 5px;
+}
+
+.headerColumnTableTicketFormId {
+  display: inline-flex;
+  flex-grow: 1;
+  padding-top: 1px;
+  padding-left: 2px;
+  width: 180px;
+  border-right: 2px solid #737373;
+  padding-right: 5px;
+}
+
 .headerColumnTableDescription {
   display: inline-flex;
   flex-grow: 1;
   padding-top: 12px;
-  padding-left: 180px;
-
-  width: 580px;
-
+  padding-left: 70px;
+  width: 400px;
   border-right: 2px solid #737373;
   padding-right: 5px;
 }
@@ -133,4 +196,12 @@ body {
 .disabledDiv {
     pointer-events: none;
     opacity: 0.4;
+}
+
+.rowTable {
+  text-align: left;
+}
+
+.tableAll {
+  overflow-x:auto;
 }

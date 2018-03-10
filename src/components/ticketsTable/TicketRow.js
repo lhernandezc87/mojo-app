@@ -5,6 +5,10 @@ import _ from 'lodash';
 
 export default class TicketRow extends React.Component {
 
+  handleOnRowTableClick = (e) => {
+    console.log(e);
+  }
+
   render(){
   	var data = this.props.data;
   	const row = this.props.tableHeadersOrder.map((column) => (
@@ -17,7 +21,7 @@ export default class TicketRow extends React.Component {
   		/>
   		));
     return(
-      <tr className="RowTable">
+      <tr className="rowTable" onClick={() => this.handleOnRowTableClick(this.props.data)} id={this.props.data.id}>
 		{row}
       </tr>
     )

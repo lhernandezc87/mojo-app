@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Col, Button, Form, FormGroup, Label, Input,
+import { Col, Button, Form, FormGroup, Input,
          Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+
+import LoadingGif from './LoadingGif';
 
 const WAIT_INTERVAL = 2500;
 
@@ -38,50 +40,64 @@ export default class SearchForm extends React.Component {
   }
 
   searchTickets = () => {
-    //alert("ha pasado 3 segundos sin digitar");
+    alert("ha pasado 3 segundos sin digitar");
   }
 
   render(){
 
     const options = this.props.columns.map((column) => (
-      <DropdownItem key={column} className="dropdownItem" onClick={this.handleDropDownColumnClick}>{column}</DropdownItem>	
+      <DropdownItem 
+        key={column} 
+        className="dropdownItem w3-container w3-center w3-animate-opacity" 
+        onClick={this.handleDropDownColumnClick}>{column}
+      </DropdownItem>	
     ));
     return (
-      <Form>
-        <FormGroup row>
-			  <Label for="columnSelect" sm={2}>Search Column Field</Label>          
-	            <Dropdown id='test' isOpen={this.state.dropDownColumnIsOpen} toggle={this.toggle}>
-	              <DropdownToggle caret>
-	                {this.state.dropDownColumn !== '' ? this.state.dropDownColumn : 'Choose Column'}
-	              </DropdownToggle>
-	              <DropdownMenu right>
-	                {options}
-	              </DropdownMenu>  
-	            </Dropdown>
-          <Col sm={2}>
-            <Input 
-            	type="text" 
-            	name="searchText" 
-            	id="searchText" 
-            	placeholder="search" 
-                onChange={this.handleOnChangeText}
-                value={this.state.searchQueryInput}
-                disabled={this.state.dropDownColumn === '' ? true : false}
+      <div className={this.props.loadingTickets ? 'disabledDiv' : ''}>
+        <Form>
+          <FormGroup row>
+          <div className="searchDropDownDiv">
+            <div className="searchDropDownDivText">
+  			     Search Column Field: 
+            </div>       
+  	        <Dropdown id='test' isOpen={this.state.dropDownColumnIsOpen} toggle={this.toggle}>
+  	          <DropdownToggle caret>
+  	            {this.state.dropDownColumn !== '' ? this.state.dropDownColumn : 'Choose Column'}
+  	          </DropdownToggle>
+  	          <DropdownMenu right>
+  	            {options}
+  	          </DropdownMenu>  
+  	        </Dropdown>
+          </div>      
+            <Col sm={2}>
+              <Input 
+              	type="text" 
+              	name="searchText" 
+              	id="searchText" 
+              	placeholder="search" 
+                  onChange={this.handleOnChangeText}
+                  value={this.state.searchQueryInput}
+                  disabled={this.state.dropDownColumn === '' ? true : false}
+              />
+            </Col>
+            <Col sm={1}>
+              <div className="searchformButtons">
+                <Button outline color="primary" size="md" disabled={this.state.dropDownColumn === '' ? true : false}>Search</Button>
+                <div className="dividerButtons" />
+  			        <Button outline color="secondary" size="md" onClick={this.handleClearButton}>clear</Button>
+  			      </div>              
+            </Col>
+            <LoadingGif 
+              loadingTickets={this.props.loadingTickets}
             />
-          </Col>
-          <Col sm={1}>
-            <div className="searchformButtons">
-              <Button outline color="primary" size="md" disabled={this.state.dropDownColumn === '' ? true : false}>Search</Button>
-              <div className="dividerButtons" />
-			  <Button outline color="secondary" size="md" onClick={this.handleClearButton}>clear</Button>
-			</div>              
-          </Col>
-        </FormGroup>  
-      </Form>
+          </FormGroup>            
+        </Form>
+      </div>
     )
   }
 }
 
 SearchForm.propTypes = {
-  columns: PropTypes.array
+  columns: PropTypes.array,
+  loadingTickets: PropTypes.bool
 };

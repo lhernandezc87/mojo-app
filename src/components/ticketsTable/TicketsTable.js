@@ -36,8 +36,11 @@ export default class TicketsTable extends React.Component {
         tableHeadersOrder={tableHeaders}
       />
     ));
+
+    var cssClass = 'tableAll w3-container w3-center w3-animate-opacity';
+    if (this.props.loadingTickets) {cssClass = cssClass + ' disabledDiv';}
   	return(
-      <div className="TableAll">
+      <div className={cssClass}>
     		<Table dark hover>
           <thead>
             <tr>

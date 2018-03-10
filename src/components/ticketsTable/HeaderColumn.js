@@ -17,6 +17,10 @@ export default class HeaderColumn extends React.Component {
     if (column.includes('Custom')) { divClass = divClass + 'Custom'; }
     if (column.includes('Title')) { divClass = divClass + 'Title'; }
     if (column.includes('Description')) { divClass = divClass + 'Description'; }
+    if (column.includes('User Id')) { divClass = divClass + 'UserId'; }
+    if (column.includes('Assigned To Id')) { divClass = divClass + 'AssignedToId'; }
+    if (column.includes('Status Id')) { divClass = divClass + 'StatusId'; }
+    if (column.includes('Ticket Form Id')) { divClass = divClass + 'TicketFormId'; }
     if (_.startsWith(column, 'Id')) { divClass = divClass + 'Id'; }
 
     return divClass;

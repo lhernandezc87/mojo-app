@@ -40,6 +40,7 @@ class TicketsDashboard extends React.Component {
   	    <div className="searchform">
   	      <SearchForm
             columns={tableHeadersAll}
+            loadingTickets={this.props.loadingTickets}
           />
   	    </div>
   	    <div className="ticketsContainer">

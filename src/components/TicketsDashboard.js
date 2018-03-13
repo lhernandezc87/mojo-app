@@ -7,6 +7,8 @@ import { updatePageNumber } from '../actions/PageNumberActions';
 import { loadingTickets } from '../actions/LoadingTicketsActions';
 import { updateSelectedColumn } from '../actions/SelectedColumnActions';
 import { updateSortDirection } from '../actions/SortDirectionActions';
+import { updateInitDate } from '../actions/InitDateActions';
+import { updateEndDate } from '../actions/EndDateActions';
 
 import TicketsTable from './ticketsTable/TicketsTable';
 import SearchForm from './searchForm/SearchForm';
@@ -34,6 +36,14 @@ class TicketsDashboard extends React.Component {
      this.props.loadTickets(page, column, dirrection);
   }
 
+  handleUpdateInitDate = (date) => {
+    this.props.updateInitDate(date);
+  }
+
+  handleUpdateEndDate = (date) => {
+    this.props.updateEndDate(date);
+  }
+
   render(){
   	return (
   	  <div className="dashboard">
@@ -41,6 +51,10 @@ class TicketsDashboard extends React.Component {
   	      <SearchForm
             columns={tableHeadersAll}
             loadingTickets={this.props.loadingTickets}
+            updateInitDate={this.handleUpdateInitDate}
+            updateEndDate={this.handleUpdateEndDate}
+            initDate={this.props.initDate}
+            endDate={this.props.endDate}
           />
   	    </div>
   	    <div className="ticketsContainer">
@@ -66,7 +80,9 @@ TicketsDashboard.propTypes = {
   loadTickets: PropTypes.func,
   loadingTickets: PropTypes.bool,
   updateSelectedColumn: PropTypes.func,
-  updateSortDirection: PropTypes.func
+  updateSortDirection: PropTypes.func,
+  updateInitDate: PropTypes.func,
+  updateEndDate: PropTypes.func
 };
 
 const mapStateToProps = (state) => ({
@@ -74,7 +90,9 @@ const mapStateToProps = (state) => ({
   pageNumber: state.pageNumber,
   loadingTickets: state.loadingTickets,
   selectedColumn: state.selectedColumn,
-  sortDirection: state.sortDirection
+  sortDirection: state.sortDirection,
+  initDate: state.initDate,
+  endDate: state.endDate
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -82,7 +100,9 @@ const mapDispatchToProps = (dispatch) => ({
   loadTickets: (page, column, dirrection) => { dispatch(loadTickets(page, column, dirrection)) },
   updateLoadingTickets: (state) => { dispatch(loadingTickets(state)) },
   updateSortDirection: (direction) => { dispatch(updateSortDirection(direction)) },
-  updateSelectedColumn: (column) => { dispatch(updateSelectedColumn(column)) }
+  updateSelectedColumn: (column) => { dispatch(updateSelectedColumn(column)) },
+  updateInitDate: (date) => { dispatch(updateInitDate(date)) },
+  updateEndDate: (date) => { dispatch(updateEndDate(date)) }
 });
 
 const tableHeadersAll = ['Id', 'Title', 'updated_on', 'assigned_on', 'assigned_to_id', 'cc', 'company_id',

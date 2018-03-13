@@ -4,6 +4,7 @@ import { Col, Button, Form, FormGroup, Input,
          Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 import LoadingGif from './LoadingGif';
+import DatePicker from './DatePicker';
 
 const WAIT_INTERVAL = 2500;
 
@@ -37,6 +38,8 @@ export default class SearchForm extends React.Component {
     clearTimeout(this.timer);
     this.setState({searchQueryInput: ''});
     this.setState({dropDownColumn: ''});
+    this.props.updateInitDate('');
+    this.props.updateEndDate('');
   }
 
   searchTickets = () => {
@@ -56,36 +59,56 @@ export default class SearchForm extends React.Component {
       <div className={this.props.loadingTickets ? 'disabledDiv' : ''}>
         <Form>
           <FormGroup row>
-          <div className="searchDropDownDiv">
-            <div className="searchDropDownDivText">
-  			     Search Column Field: 
-            </div>       
-  	        <Dropdown id='test' isOpen={this.state.dropDownColumnIsOpen} toggle={this.toggle}>
-  	          <DropdownToggle caret>
-  	            {this.state.dropDownColumn !== '' ? this.state.dropDownColumn : 'Choose Column'}
-  	          </DropdownToggle>
-  	          <DropdownMenu right>
-  	            {options}
-  	          </DropdownMenu>  
-  	        </Dropdown>
-          </div>      
+            <div className="searchDropDownDiv">
+              <div className="searchDropDownDivText">
+    			     Search Column Field: 
+              </div>       
+    	        <Dropdown id='test' isOpen={this.state.dropDownColumnIsOpen} toggle={this.toggle}>
+    	          <DropdownToggle caret>
+    	            {this.state.dropDownColumn !== '' ? this.state.dropDownColumn : 'Choose Column'}
+    	          </DropdownToggle>
+    	          <DropdownMenu right>
+    	            {options}
+    	          </DropdownMenu>  
+    	        </Dropdown>
+            </div> 
+            <div className='datePickersDiv'>     
+              <Col sm={6}>
+                <DatePicker
+                  labelText='Init Date'
+                  date={this.props.initDate}
+                  updateDate={this.props.updateInitDate}
+                  disablePicker={this.state.dropDownColumn === '' ? true : false}
+                />
+              </Col>  
+              <Col sm={6}>
+                <DatePicker
+                  labelText="End Date"
+                  date={this.props.endDate}
+                  updateDate={this.props.updateEndDate}
+                  disablePicker={this.state.dropDownColumn === '' ? true : false}
+                /> 
+              </Col>
+            </div> 
             <Col sm={2}>
-              <Input 
-              	type="text" 
-              	name="searchText" 
-              	id="searchText" 
-              	placeholder="search" 
-                  onChange={this.handleOnChangeText}
-                  value={this.state.searchQueryInput}
-                  disabled={this.state.dropDownColumn === '' ? true : false}
-              />
+              <div className='searchTextDiv'>
+                <Input 
+                  type="text" 
+                  name="searchText" 
+                  id="searchText" 
+                  placeholder="search words" 
+                    onChange={this.handleOnChangeText}
+                    value={this.state.searchQueryInput}
+                    disabled={this.state.dropDownColumn === '' ? true : false}
+                />
+              </div>  
             </Col>
             <Col sm={1}>
               <div className="searchformButtons">
                 <Button outline color="primary" size="md" disabled={this.state.dropDownColumn === '' ? true : false}>Search</Button>
                 <div className="dividerButtons" />
-  			        <Button outline color="secondary" size="md" onClick={this.handleClearButton}>clear</Button>
-  			      </div>              
+                <Button outline color="secondary" size="md" onClick={this.handleClearButton}>clear</Button>
+              </div>              
             </Col>
             <LoadingGif 
               loadingTickets={this.props.loadingTickets}
@@ -99,5 +122,9 @@ export default class SearchForm extends React.Component {
 
 SearchForm.propTypes = {
   columns: PropTypes.array,
-  loadingTickets: PropTypes.bool
+  loadingTickets: PropTypes.bool,
+  updateInitDate: PropTypes.func,
+  initDate: PropTypes.string,
+  updateEndDate: PropTypes.func,
+  endDate: PropTypes.string
 };

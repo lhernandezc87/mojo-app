@@ -10,7 +10,7 @@ export default class TicketsTable extends React.Component {
 
 
   handleOnSort = (column, dirrection) => {
-    this.props.updateSortDirection(dirrection);
+    this.props.updateSortDirrection(dirrection);
     this.props.updateSelectedColumn(column);
     this.props.loadTickets(this.props.pageNumber, column, dirrection);
   }
@@ -22,7 +22,7 @@ export default class TicketsTable extends React.Component {
         column={header}
         onSortClick={this.handleOnSort}
         selectedColumn={this.props.selectedColumn}
-        sortDirection={this.props.sortDirection}
+        sortDirection={this.props.sortDirrection}
       />
     ));
 
@@ -32,7 +32,7 @@ export default class TicketsTable extends React.Component {
         key={ticket.id}
         data={ticket}
         selectedColumn={this.props.selectedColumn}
-        sortDirrection={this.props.sortDirection}
+        sortDirrection={this.props.sortDirrection}
         tableHeadersOrder={tableHeaders}
       />
     ));
@@ -66,8 +66,8 @@ TicketsTable.propTypes = {
   pageNumber: PropTypes.number,
   tickets: PropTypes.array.isRequired,
   selectedColumn: PropTypes.string,
-  sortDirection: PropTypes.string,
-  updateSortDirection: PropTypes.func.isRequired,
+  sortDirrection: PropTypes.string,
+  updateSortDirrection: PropTypes.func.isRequired,
   updateSelectedColumn: PropTypes.func.isRequired,
   updatePageNumber: PropTypes.func,
   loadingTickets: PropTypes.bool,

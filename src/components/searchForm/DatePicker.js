@@ -4,12 +4,8 @@ import { FormGroup, Label, Input } from 'reactstrap';
 import _ from 'lodash';
 
 export default class DatePicker extends React.Component {
-  state = {
-    date: this.props.date
-  }
 
   handleDateEvent = (e) => {
-    this.setState({date: e.target.value});
     this.props.updateDate(e.target.value);
   }	
 
@@ -25,7 +21,7 @@ export default class DatePicker extends React.Component {
           id={_.snakeCase(this.props.labelText)} 
           placeholder={this.props.labelText}
           onChange={this.handleDateEvent}
-          value={this.state.date}
+          value={this.props.date}
           disabled={this.props.disablePicker} 
         />
       </div>	

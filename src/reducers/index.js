@@ -4,10 +4,11 @@ import tickets from './TicketsReducer';
 import pageNumber from './PageNumberReducer';
 import loadingTickets from './LoadingTicketsReducer';
 import selectedColumn from './SelectedColumnReducer';
-import sortDirection from './SortDirectionReducer';
+import sortDirrection from './SortDirrectionReducer';
 import initDate from './InitDateReducer';
 import endDate from './EndDateReducer';
+import searchTickets from './SearchTicketsReducer';
 
 export default combineReducers({
-  tickets, pageNumber, loadingTickets, selectedColumn, sortDirection, initDate, endDate
+  tickets, pageNumber, loadingTickets, selectedColumn, sortDirrection, initDate, endDate, searchTickets
 });

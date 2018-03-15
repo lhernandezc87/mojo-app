@@ -1,4 +1,4 @@
-export default function sortDirection(state = '', action) {
+export default function sortDirrection(state = '', action) {
   switch (action.type){
     case 'UPDATE_SORTDIRECTION': {
       return action.payload;

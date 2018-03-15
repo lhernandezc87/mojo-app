@@ -6,9 +6,10 @@ import { loadTickets } from '../actions/TicketsActions';
 import { updatePageNumber } from '../actions/PageNumberActions';
 import { loadingTickets } from '../actions/LoadingTicketsActions';
 import { updateSelectedColumn } from '../actions/SelectedColumnActions';
-import { updateSortDirection } from '../actions/SortDirectionActions';
+import { updateSortDirrection } from '../actions/SortDirrectionActions';
 import { updateInitDate } from '../actions/InitDateActions';
 import { updateEndDate } from '../actions/EndDateActions';
+import { loadSearchTickets } from '../actions/SearchTicketsActions';
 
 import TicketsTable from './ticketsTable/TicketsTable';
 import SearchForm from './searchForm/SearchForm';
@@ -23,8 +24,8 @@ class TicketsDashboard extends React.Component {
     this.props.updateSelectedColumn(column);
   }
 
-  handleUpdateSortDirection = (dirrection) => {
-    this.props.updateSortDirection(dirrection);
+  handleUpdateSortDirrection = (dirrection) => {
+    this.props.updateSortDirrection(dirrection);
   }
 
   handleUpdatePageNumber = (page) => {
@@ -44,7 +45,28 @@ class TicketsDashboard extends React.Component {
     this.props.updateEndDate(date);
   }
 
+  handleClearButton = () => {
+    this.props.updateInitDate('');
+    this.props.updateEndDate('');
+  }
+
+  handleSearcClick = (searchText) => {
+    this.props.loadSearchTickets(
+      this.props.pageNumber, 
+      this.props.selectedColumn, 
+      this.props.sortDirrection, 
+      searchText, 
+      this.props.initDate, 
+      this.props.endDate
+    );
+  }
+
+  handleTickets = (searchTickets) => {
+    return this.props.tickets;
+  }
+
   render(){
+    const tickets = this.handleTickets(false);
   	return (
   	  <div className="dashboard">
   	    <div className="searchform">
@@ -55,16 +77,18 @@ class TicketsDashboard extends React.Component {
             updateEndDate={this.handleUpdateEndDate}
             initDate={this.props.initDate}
             endDate={this.props.endDate}
+            clearButtonClick={this.handleClearButton}
+            searchButtonClick={this.handleSearcClick}
           />
   	    </div>
   	    <div className="ticketsContainer">
   	      <TicketsTable 
-            tickets={this.props.tickets}
+            tickets={tickets}
             loadTickets={this.handleLoadTickets}
             pageNumber={this.props.pageNumber}
             selectedColumn={this.props.selectedColumn}
-            sortDirection={this.props.sortDirection}
-            updateSortDirection={this.handleUpdateSortDirection}
+            sortDirrection={this.props.sortDirrection}
+            updateSortDirrection={this.handleUpdateSortDirrection}
             updateSelectedColumn={this.handleUpdateSelectedColumn}
             updatePageNumber={this.handleUpdatePageNumber}
             loadingTickets={this.props.loadingTickets}
@@ -80,9 +104,10 @@ TicketsDashboard.propTypes = {
   loadTickets: PropTypes.func,
   loadingTickets: PropTypes.bool,
   updateSelectedColumn: PropTypes.func,
-  updateSortDirection: PropTypes.func,
+  updateSortDirrection: PropTypes.func,
   updateInitDate: PropTypes.func,
-  updateEndDate: PropTypes.func
+  updateEndDate: PropTypes.func,
+  loadSearchTickets: PropTypes.func
 };
 
 const mapStateToProps = (state) => ({
@@ -90,19 +115,23 @@ const mapStateToProps = (state) => ({
   pageNumber: state.pageNumber,
   loadingTickets: state.loadingTickets,
   selectedColumn: state.selectedColumn,
-  sortDirection: state.sortDirection,
+  sortDirrection: state.sortDirrection,
   initDate: state.initDate,
-  endDate: state.endDate
+  endDate: state.endDate,
+  searchTickets: state.searchTickets
 });
 
 const mapDispatchToProps = (dispatch) => ({
   updatePageNumber: (page) => { dispatch(updatePageNumber(page)) },
   loadTickets: (page, column, dirrection) => { dispatch(loadTickets(page, column, dirrection)) },
   updateLoadingTickets: (state) => { dispatch(loadingTickets(state)) },
-  updateSortDirection: (direction) => { dispatch(updateSortDirection(direction)) },
+  updateSortDirrection: (dirrection) => { dispatch(updateSortDirrection(dirrection)) },
   updateSelectedColumn: (column) => { dispatch(updateSelectedColumn(column)) },
   updateInitDate: (date) => { dispatch(updateInitDate(date)) },
-  updateEndDate: (date) => { dispatch(updateEndDate(date)) }
+  updateEndDate: (date) => { dispatch(updateEndDate(date)) },
+  loadSearchTickets: (page, column, dirrection, searchWords, initDate, endDate) => { 
+    dispatch(loadSearchTickets(page, column, dirrection, searchWords, initDate, endDate));
+  }
 });
 
 const tableHeadersAll = ['Id', 'Title', 'updated_on', 'assigned_on', 'assigned_to_id', 'cc', 'company_id',

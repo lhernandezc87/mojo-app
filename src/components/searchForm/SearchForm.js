@@ -38,16 +38,20 @@ export default class SearchForm extends React.Component {
     clearTimeout(this.timer);
     this.setState({searchQueryInput: ''});
     this.setState({dropDownColumn: ''});
-    this.props.updateInitDate('');
-    this.props.updateEndDate('');
+    this.props.clearButtonClick();
+  }
+
+  handleSearchButton = () => {
+    this.searchTickets();
   }
 
   searchTickets = () => {
-    alert("ha pasado 3 segundos sin digitar");
+   this.props.searchButtonClick(this.state.searchQueryInput);
   }
 
   render(){
-
+    var disableSearchButton = false;
+    if (this.props.initDate === '' && this.props.endDate === '' && this.state.dropDownColumn === ''){disableSearchButton = true;}
     const options = this.props.columns.map((column) => (
       <DropdownItem 
         key={column} 
@@ -59,26 +63,13 @@ export default class SearchForm extends React.Component {
       <div className={this.props.loadingTickets ? 'disabledDiv' : ''}>
         <Form>
           <FormGroup row>
-            <div className="searchDropDownDiv">
-              <div className="searchDropDownDivText">
-    			     Search Column Field: 
-              </div>       
-    	        <Dropdown id='test' isOpen={this.state.dropDownColumnIsOpen} toggle={this.toggle}>
-    	          <DropdownToggle caret>
-    	            {this.state.dropDownColumn !== '' ? this.state.dropDownColumn : 'Choose Column'}
-    	          </DropdownToggle>
-    	          <DropdownMenu right>
-    	            {options}
-    	          </DropdownMenu>  
-    	        </Dropdown>
-            </div> 
             <div className='datePickersDiv'>     
               <Col sm={6}>
                 <DatePicker
                   labelText='Init Date'
                   date={this.props.initDate}
                   updateDate={this.props.updateInitDate}
-                  disablePicker={this.state.dropDownColumn === '' ? true : false}
+                  disablePicker={false}
                 />
               </Col>  
               <Col sm={6}>
@@ -86,28 +77,55 @@ export default class SearchForm extends React.Component {
                   labelText="End Date"
                   date={this.props.endDate}
                   updateDate={this.props.updateEndDate}
-                  disablePicker={this.state.dropDownColumn === '' ? true : false}
+                  disablePicker={false}
                 /> 
               </Col>
-            </div> 
-            <Col sm={2}>
-              <div className='searchTextDiv'>
-                <Input 
-                  type="text" 
-                  name="searchText" 
-                  id="searchText" 
-                  placeholder="search words" 
-                    onChange={this.handleOnChangeText}
-                    value={this.state.searchQueryInput}
-                    disabled={this.state.dropDownColumn === '' ? true : false}
-                />
-              </div>  
-            </Col>
+            </div>
+            <div className="searchDropDownDiv">
+              <div className="searchDropDownDivText">
+               Search Column Field: 
+              </div>       
+              <Dropdown id='test' isOpen={this.state.dropDownColumnIsOpen} toggle={this.toggle}>
+                <DropdownToggle caret>
+                  {this.state.dropDownColumn !== '' ? this.state.dropDownColumn : 'Choose Column'}
+                </DropdownToggle>
+                <DropdownMenu right>
+                  {options}
+                </DropdownMenu>  
+              </Dropdown> 
+              <Col sm={4}>
+                <div className='searchTextDiv'>
+                  <Input 
+                    type="text" 
+                    name="searchText" 
+                    id="searchText" 
+                    placeholder="search words" 
+                      onChange={this.handleOnChangeText}
+                      value={this.state.searchQueryInput}
+                      disabled={this.state.dropDownColumn === '' ? true : false}
+                  />
+                </div>  
+              </Col>
+            </div>   
             <Col sm={1}>
               <div className="searchformButtons">
-                <Button outline color="primary" size="md" disabled={this.state.dropDownColumn === '' ? true : false}>Search</Button>
+                <Button 
+                  outline 
+                  color="primary" 
+                  size="md" 
+                  onClick={this.handleSearchButton}
+                  disabled={disableSearchButton}
+                >
+                  Search
+                </Button>
                 <div className="dividerButtons" />
-                <Button outline color="secondary" size="md" onClick={this.handleClearButton}>clear</Button>
+                <Button 
+                  outline color="secondary" 
+                  size="md" 
+                  onClick={this.handleClearButton}
+                >
+                  clear
+                </Button>
               </div>              
             </Col>
             <LoadingGif 
@@ -126,5 +144,7 @@ SearchForm.propTypes = {
   updateInitDate: PropTypes.func,
   initDate: PropTypes.string,
   updateEndDate: PropTypes.func,
-  endDate: PropTypes.string
+  endDate: PropTypes.string,
+  clearButtonClick: PropTypes.func,
+  searchButtonClick: PropTypes.func
 };

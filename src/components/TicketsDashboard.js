@@ -10,6 +10,7 @@ import { updateSortDirrection } from '../actions/SortDirrectionActions';
 import { updateInitDate } from '../actions/InitDateActions';
 import { updateEndDate } from '../actions/EndDateActions';
 import { loadSearchTickets } from '../actions/SearchTicketsActions';
+import { updateUseSearchedTickets } from '../actions/UseSearchedTicketsActions';
 
 import TicketsTable from './ticketsTable/TicketsTable';
 import SearchForm from './searchForm/SearchForm';
@@ -30,7 +31,18 @@ class TicketsDashboard extends React.Component {
 
   handleUpdatePageNumber = (page) => {
     this.props.updatePageNumber(page);
-    this.props.loadTickets(page);
+    if (this.props.useSearchedTickets){
+      this.props.loadSearchTickets(
+                                    page, 
+                                    this.props.selectedColumn, 
+                                    this.props.sortDirrection, 
+                                    '', 
+                                    this.props.initDate, 
+                                    this.props.endDate
+      );
+    }else{
+      this.props.loadTickets(page);
+    }  
   }
 
   handleLoadTickets = (page, column, dirrection) => {
@@ -48,6 +60,7 @@ class TicketsDashboard extends React.Component {
   handleClearButton = () => {
     this.props.updateInitDate('');
     this.props.updateEndDate('');
+    this.props.updateUseSearchedTickets(false);
   }
 
   handleSearcClick = (searchText) => {
@@ -59,19 +72,25 @@ class TicketsDashboard extends React.Component {
       this.props.initDate, 
       this.props.endDate
     );
+    this.props.updateUseSearchedTickets(true);
   }
 
-  handleTickets = (searchTickets) => {
-    return this.props.tickets;
+  handleTickets = () => {
+    if (this.props.useSearchedTickets){
+      return this.props.searchTickets;
+    }else{
+      return this.props.tickets;
+    }
   }
 
   render(){
-    const tickets = this.handleTickets(false);
+    const tickets = this.handleTickets();
   	return (
   	  <div className="dashboard">
   	    <div className="searchform">
   	      <SearchForm
             columns={tableHeadersAll}
+            datesColumns={dropDownDateFields}
             loadingTickets={this.props.loadingTickets}
             updateInitDate={this.handleUpdateInitDate}
             updateEndDate={this.handleUpdateEndDate}
@@ -79,6 +98,8 @@ class TicketsDashboard extends React.Component {
             endDate={this.props.endDate}
             clearButtonClick={this.handleClearButton}
             searchButtonClick={this.handleSearcClick}
+            updateSearchedTickets={this.handleUpdateUseSearchedTickets}
+            updateSelectedColumn={this.handleUpdateSelectedColumn}
           />
   	    </div>
   	    <div className="ticketsContainer">
@@ -107,7 +128,8 @@ TicketsDashboard.propTypes = {
   updateSortDirrection: PropTypes.func,
   updateInitDate: PropTypes.func,
   updateEndDate: PropTypes.func,
-  loadSearchTickets: PropTypes.func
+  loadSearchTickets: PropTypes.func,
+  updateUseSearchedTickets: PropTypes.func
 };
 
 const mapStateToProps = (state) => ({
@@ -118,7 +140,8 @@ const mapStateToProps = (state) => ({
   sortDirrection: state.sortDirrection,
   initDate: state.initDate,
   endDate: state.endDate,
-  searchTickets: state.searchTickets
+  searchTickets: state.searchTickets,
+  useSearchedTickets: state.useSearchedTickets
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -131,7 +154,8 @@ const mapDispatchToProps = (dispatch) => ({
   updateEndDate: (date) => { dispatch(updateEndDate(date)) },
   loadSearchTickets: (page, column, dirrection, searchWords, initDate, endDate) => { 
     dispatch(loadSearchTickets(page, column, dirrection, searchWords, initDate, endDate));
-  }
+  },
+  updateUseSearchedTickets: (state) => {dispatch(updateUseSearchedTickets(state)) }
 });
 
 const tableHeadersAll = ['Id', 'Title', 'updated_on', 'assigned_on', 'assigned_to_id', 'cc', 'company_id',
@@ -139,6 +163,9 @@ const tableHeadersAll = ['Id', 'Title', 'updated_on', 'assigned_on', 'assigned_t
       'legacy_id', 'priority_id', 'rated_on', 'rating', 'scheduled_on', 'solved_on', 'status_changed_on',
       'status_id', 'ticket_form_id', 'ticket_queue_id', 'ticket_type_id', 'user_attention_id', 'user_id', 
       'custom_field_category_sr', 'custom_field_impact_sr', 'custom_field_request', 'custom_field_urgency_sr',
-      'custom_field_workplace_sr']; 
+      'custom_field_workplace_sr'];
+
+const dropDownDateFields = ['comments.created_on', 'created_on', 'due_on', 'rated_on', 'scheduled_on', 'solved_on',
+      'status_changed_on', 'updated_on'];      
 
 export default connect(mapStateToProps, mapDispatchToProps)(TicketsDashboard);

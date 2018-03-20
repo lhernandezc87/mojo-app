@@ -26,6 +26,7 @@ export default class SearchForm extends React.Component {
 
   handleDropDownColumnClick = (e) => {
     this.setState({dropDownColumn: e.currentTarget.textContent});
+    this.props.updateSelectedColumn(e.currentTarget.textContent);
   }
 
   handleOnChangeText = (e) => {
@@ -146,5 +147,7 @@ SearchForm.propTypes = {
   updateEndDate: PropTypes.func,
   endDate: PropTypes.string,
   clearButtonClick: PropTypes.func,
-  searchButtonClick: PropTypes.func
+  searchButtonClick: PropTypes.func,
+  updateSelectedColumn: PropTypes.func,
+  datesColumns: PropTypes.array
 };

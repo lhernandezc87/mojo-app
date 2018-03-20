@@ -8,7 +8,8 @@ import sortDirrection from './SortDirrectionReducer';
 import initDate from './InitDateReducer';
 import endDate from './EndDateReducer';
 import searchTickets from './SearchTicketsReducer';
+import useSearchedTickets from './UseSearchedTicketsReducer';
 
 export default combineReducers({
-  tickets, pageNumber, loadingTickets, selectedColumn, sortDirrection, initDate, endDate, searchTickets
+  tickets, pageNumber, loadingTickets, selectedColumn, sortDirrection, initDate, endDate, searchTickets, useSearchedTickets
 });

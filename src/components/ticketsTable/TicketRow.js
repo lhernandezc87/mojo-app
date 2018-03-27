@@ -5,23 +5,23 @@ import _ from 'lodash';
 
 export default class TicketRow extends React.Component {
 
-  handleOnRowTableClick = (e) => {
-    console.log(e);
+  handleOnRowTableClick = (ticket) => {
+    this.props.updateSelectedTicket(ticket);
   }
 
   render(){
-  	var data = this.props.data;
-  	const row = this.props.tableHeadersOrder.map((column) => (
+  	const {data, tableHeadersOrder, selectedColumn, sortDirrection} = this.props;
+  	const row = tableHeadersOrder.map((column) => (
   		<TicketRowColumn
   		  key={column}
   		  column={column}
   		  data={_.toString(data[_.snakeCase(column)])}
-  		  selectedColumn={this.props.selectedColumn}
-  		  sortDirrection={this.props.sortDirrection}
+  		  selectedColumn={selectedColumn}
+  		  sortDirrection={sortDirrection}
   		/>
   		));
     return(
-      <tr className="rowTable" onClick={() => this.handleOnRowTableClick(this.props.data)} id={this.props.data.id}>
+      <tr className="rowTable" onClick={() => this.handleOnRowTableClick(data.id)} id={data.id}>
 		{row}
       </tr>
     )
@@ -33,5 +33,6 @@ TicketRow.propTypes = {
   data: PropTypes.object.isRequired,
   tableHeadersOrder: PropTypes.array,
   selectedColumn: PropTypes.string,
-  sortDirrection: PropTypes.string
+  sortDirrection: PropTypes.string,
+  updateSelectedTicket: PropTypes.func
 }

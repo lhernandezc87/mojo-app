@@ -9,7 +9,11 @@ import initDate from './InitDateReducer';
 import endDate from './EndDateReducer';
 import searchTickets from './SearchTicketsReducer';
 import useSearchedTickets from './UseSearchedTicketsReducer';
+import selectedDateColumn from './SelectedDateColumnReducer';
+import selectedTicket from './SelectedTicketReducer';
+import selectedTicketId from './SelectedTicketIdReducer';
 
 export default combineReducers({
-  tickets, pageNumber, loadingTickets, selectedColumn, sortDirrection, initDate, endDate, searchTickets, useSearchedTickets
+  tickets, pageNumber, loadingTickets, selectedColumn, sortDirrection, initDate, endDate, searchTickets,
+  useSearchedTickets, selectedDateColumn, selectedTicket, selectedTicketId
 });

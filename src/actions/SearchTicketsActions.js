@@ -1,10 +1,10 @@
 import _ from 'lodash';
 
-export function loadSearchTickets(page=1, column='id', dirrection='asc', words='', initDate='', endDate='') {
+export function loadSearchTickets(page=1, column='id', dirrection='asc', words='', initDate='', endDate='', columnDate='') {
 
   return dispatch => {
     dispatch({type: "LOADING_TICKETS", payload: true})
-    return fetch(getUrlJsonPaginated(page, column, dirrection, words='', initDate='', endDate=''), 
+    return fetch(getUrlJsonPaginated(page, column, dirrection, words, initDate, endDate, columnDate), 
       {
         method: "GET",
         cache: 'no-cache'
@@ -22,9 +22,10 @@ export function loadSearchTickets(page=1, column='id', dirrection='asc', words='
   }
 }
 
-function getUrlJsonPaginated(page, column, dirrection, words='', initDate='', endDate=''){  
+function getUrlJsonPaginated(page, column, dirrection, words='', initDate='', endDate='', columnDate=''){  
   var query = 'query=status.id:\(\<50\)' + 
-              getDatesRange(initDate, endDate, column) + 
+              getSearchQuery(words, column); +
+              getDatesRange(initDate, endDate, columnDate) + 
               '\&sf=' + column + 
               '\&r=' + getSortDirrection(dirrection) +
               '\&page=' + page;
@@ -33,6 +34,10 @@ function getUrlJsonPaginated(page, column, dirrection, words='', initDate='', en
 
 function getSortDirrection(dirrection){
   return dirrection === 'asc' ? '0' : '1';
+}
+
+function getSearchQuery(words, column){
+  return words === '' ? words : '\&column:("' + words + '")';
 }
 
 function getDatesRange(initDate, endDate, column){

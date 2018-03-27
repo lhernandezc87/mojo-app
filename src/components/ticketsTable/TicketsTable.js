@@ -34,6 +34,7 @@ export default class TicketsTable extends React.Component {
         selectedColumn={this.props.selectedColumn}
         sortDirrection={this.props.sortDirrection}
         tableHeadersOrder={tableHeaders}
+        updateSelectedTicket={this.props.updateSelectedTicket}
       />
     ));
 
@@ -71,7 +72,8 @@ TicketsTable.propTypes = {
   updateSelectedColumn: PropTypes.func.isRequired,
   updatePageNumber: PropTypes.func,
   loadingTickets: PropTypes.bool,
-  loadTickets: PropTypes.func
+  loadTickets: PropTypes.func,
+  updateSelectedTicket:  PropTypes.func
 }
 
 const tableHeaders = ['Id', 'Title', 'Description', 'User Id', 'Assigned To Id', 'Status Id', 'Ticket Form Id', 

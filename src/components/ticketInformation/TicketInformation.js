@@ -15,11 +15,18 @@ class TicketInformation extends React.Component {
   }
 
   render(){
-
-    const dataRows = Object.entries(this.props.selectedTicket).forEach(([key, value]) => (
+    const test = {custom_field_types: [
+{
+name: "category_sr",
+type: 3,
+type_name: "Drop-down list"
+}
+]}
+    const dataRows = Object.entries(test).map(([key, value]) => (
       <TicketInformationRow
         header={key}
-        data={String(value)}
+        value={value}
+        key={key}
       />  
     ));
 

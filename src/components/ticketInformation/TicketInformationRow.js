@@ -1,35 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import { Row, Col } from 'reactstrap';
 
 export default class TicketInformationRow extends React.Component {
 
   render(){
+    const {header, value: info} = this.props;
+    const data = _.isObject(info) ?
+      _.map(info, (value, key) => <TicketInformationRow header={key} value={value} key={key} />)
+      : info;
 
-    var data = '';
-    if (_.isObject(this.props.value)){
-      data = _.map(this.props.value, (value, key) => (
-	    <TicketInformationRow
-	      header={_.keys(value)[key]}
-	      value={_.values(value)[key]}
-	      key={key}
-	    />  
-	  ));
-    }
-    else{
-        data = this.props.value;
-    }
-
-    return(
-      <div className='ticketInformationTableRow'>
-	    <div className='ticketInformationTableHeader'>{this.props.header}:</div> 
-	    <div className='ticketInformationTableDataColumn'>{data}</div>
-	  </div> 
-    )
+    return _.isString(header) ? (
+      <Row className='ticketInformationTableRow'>
+	      <Col className='ticketInformationTableHeader'>{header}:</Col>
+	      <Col lg="10" className='ticketInformationTableDataColumn'>{data}</Col>
+	    </Row>
+    ) : data;
   }
 }
 
 TicketInformationRow.propTypes = {
-  header: PropTypes.string,
+  header: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]),
   value: PropTypes.any
 }

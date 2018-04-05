@@ -8,39 +8,24 @@ import { updateSelectedTicketId } from '../../actions/SelectedTicketIdActions';
 import TicketInformationRow from './TicketInformationRow';
 
 class TicketInformation extends React.Component {
-  
+
   componentDidMount(){
   	this.props.updateSelectedTicketId(this.props.match.params.id);
     this.props.updateSelectedTicket(this.props.match.params.id);
   }
 
   render(){
-    const test = {custom_field_types: [
-{
-name: "category_sr",
-type: 3,
-type_name: "Drop-down list"
-}
-]}
-    const dataRows = Object.entries(test).map(([key, value]) => (
-      <TicketInformationRow
-        header={key}
-        value={value}
-        key={key}
-      />  
-    ));
-
     return(
       <div className="ticketInformationDiv">
         <div className='ticketInformationTitle'>
           Ticket {this.props.selectedTicketId} Information
         </div>
         <div className='ticketInformationTable'>
-          {dataRows}
+          <TicketInformationRow value={this.props.selectedTicket} />
         </div>
       </div>
     )
-  }	
+  }
 
 }
 

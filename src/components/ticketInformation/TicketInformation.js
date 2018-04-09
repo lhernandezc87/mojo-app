@@ -15,7 +15,7 @@ class TicketInformation extends React.Component {
     this.props.updateSelectedTicket(this.props.match.params.id);
   }
 
-  handleOnBackClick = (e) => {
+  handleOnBackClick = () => {
     return this.props.history.push('/');
   }
 

@@ -295,3 +295,9 @@ body {
   padding-left: 8px;
   width: 75%;
 }
+
+.informationTicketBackButtonDiv {
+  position: fixed;                                                                                
+  right: 10%;
+  z-index: 1000;
+}

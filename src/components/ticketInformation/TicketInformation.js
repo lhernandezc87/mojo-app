@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
+import { Button } from 'reactstrap';
 
 import { updateSelectedTicket } from '../../actions/SelectedTicketActions';
 import { updateSelectedTicketId } from '../../actions/SelectedTicketIdActions';
@@ -14,12 +15,25 @@ class TicketInformation extends React.Component {
     this.props.updateSelectedTicket(this.props.match.params.id);
   }
 
+  handleOnBackClick = (e) => {
+    return this.props.history.push('/');
+  }
+
   render(){
     return(
       <div className="ticketInformationDiv">
         <div className='ticketInformationTitle'>
           Ticket {this.props.selectedTicketId} Information
         </div>
+        <div className='informationTicketBackButtonDiv'>
+          <Button 
+            color="secondary" 
+            size="lg"
+            onClick={this.handleOnBackClick}
+          >
+            Back
+          </Button>
+        </div>  
         <div className='ticketInformationTable'>
           <TicketInformationRow value={this.props.selectedTicket} />
         </div>
@@ -43,10 +57,5 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   updateSelectedTicket,
   updateSelectedTicketId
 }, dispatch);
-
-const tableHeadersAll = ['assignee.id', 'assignee.name', 'assignee.email', 'comments.id', 'comments.body',
-      'comments.time_spent', 'comments.user.id', 'comments.user.name', 'comments.user.email', 'company.id', 'company.name',
-      'created_by.id', 'created_by.name', 'created_by.email', 'description', 'priority.id', 'priority.name', 
-      'queue.id', 'queue.name', 'rating', 'status.id', 'status.name', 'type.id', 'type.name', 'title'];
 
 export default connect(mapStateToProps, mapDispatchToProps)(TicketInformation);

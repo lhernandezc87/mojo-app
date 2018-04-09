@@ -3,3 +3,301 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.dashboard {
+  width: 100%;
+  padding-bottom: 30px;
+  background: #475a6d;
+}
+
+.searchform {
+  padding-top: 11px;
+  border-bottom: solid 3px gray;
+  padding-left: 12px;
+  background: #c1cccb;
+}
+
+.searchformButtons {
+  display: inline-flex;
+  padding-top: 32px;
+}
+
+.dividerButtons{
+    width:5px;
+    height:auto;
+    display:inline-block;
+}
+
+.searchDropDownDiv{
+  width: 40%;
+  display: inline-flex;
+  background: #4d7f92;
+  padding-top: 32px;
+  padding-left: 3px;
+}
+
+.searchDropDownDiv #test{
+  width: 37%;
+}
+
+.datesContainer{
+  display: inline-flex;
+  padding: 5px;
+  padding-right: 25px;
+  background: #383852;
+}
+
+.DateDropDown{
+  padding-top: 27px;
+  padding-left: 7px;
+}
+
+.datePickersDiv{
+  padding: 3px;
+  padding-left: 10px;
+}
+
+.datePickerDiv{
+  padding-top: 2px;
+  padding-bottom: 2px;
+  display: inline-flex;
+  width: 228px;
+}
+
+.datePickerDivText{
+  display: inline-flex;
+  padding-top: 8px;
+  width: 68px;
+  color: white;
+  font-weight: bold;
+}
+
+.datePickerDiv #init_date{
+  padding-left: 8px;
+  width: 160px;
+}
+
+.datePickerDiv #end_date{
+  padding-left: 8px;
+  width: 160px;
+}
+
+.searchDropDownDivText{
+  display: inline-block;
+  width: 26%;
+  margin-left: 9px;
+  margin-top: 7px;
+  color: white;
+
+}
+
+.datePickersDiv .col-sm-6{
+  padding-left: 1px;
+  padding-right: 1px;
+}
+
+.dropdown .dropdown-menu .dropdownItem:hover{
+  cursor: pointer;
+  background: gray;
+}
+
+.loadingLogo{
+  display: inline-flex;
+  padding-left: 36px;
+  height: 90px;
+  width: 45px;
+}
+
+.nonVisibleLogo{
+  display: none;
+}
+
+.ticketsContainer {
+  padding-top: 5px;	
+  margin: 15px;
+  font-size: 0.65rem;
+}
+
+.headerColumnTableText {
+  width: 180px;
+  padding-top: 10px;
+  font-size: 1.1rem;
+}
+
+.sortColumntableIcons {
+	margin-left: 10px;
+	width: 44px;
+}
+
+#upSortTableIcon {
+  height: 26px;
+  width: 26px;
+}
+
+#upSortTableIcon:hover {
+  height: 32px;
+  width: 32px;
+}
+
+#downSortTableIcon {	
+  height: 26px;
+  width: 26px;
+}
+
+#downSortTableIcon:hover {
+  height: 32px;
+  width: 32px;
+}
+
+.tableHeaders {
+  display: inline-flex;
+  text-align: center;
+}
+
+.headerColumnTable {
+  display: inline-flex;
+  flex-grow: 1;
+  padding-top: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-right: 2px solid #737373; 
+}
+
+.headerColumnTableCustom {
+  display: inline-flex;
+  flex-grow: 1;
+  padding-left: 5px;
+  width: 100%;
+  border-right: 2px solid #737373;
+  padding-right: 5px;
+}
+
+.headerColumnTableTitle {
+  display: inline-flex;
+  flex-grow: 1;
+  padding-top: 12px;
+  padding-left: 20px;
+  width: 280px;
+  border-right: 2px solid #737373;
+  padding-right: 5px;
+}
+
+.headerColumnTableId {
+  display: inline-flex;
+  flex-grow: 1;
+  padding-top: 12px;
+  padding-left: 20px;
+  width: 85px;
+  border-right: 2px solid #737373;
+  padding-right: 5px;
+}
+
+.headerColumnTableUserId {
+  display: inline-flex;
+  flex-grow: 1;
+  padding-top: 12px;
+  padding-left: 2px;
+  width: 115px;
+  border-right: 2px solid #737373;
+  padding-right: 5px;
+}
+
+.headerColumnTableStatusId {
+  display: inline-flex;
+  flex-grow: 1;
+  padding-top: 12px;
+  padding-left: 2px;
+  width: 130px;
+  border-right: 2px solid #737373;
+  padding-right: 5px;
+}
+
+.headerColumnTableAssignedToId {
+  display: inline-flex;
+  flex-grow: 1;
+  padding-top: 1px;
+  padding-left: 2px;
+  width: 180px;
+  border-right: 2px solid #737373;
+  padding-right: 5px;
+}
+
+.headerColumnTableTicketFormId {
+  display: inline-flex;
+  flex-grow: 1;
+  padding-top: 1px;
+  padding-left: 2px;
+  width: 180px;
+  border-right: 2px solid #737373;
+  padding-right: 5px;
+}
+
+.headerColumnTableDescription {
+  display: inline-flex;
+  flex-grow: 1;
+  padding-top: 12px;
+  padding-left: 70px;
+  width: 450px;
+  border-right: 2px solid #737373;
+  padding-right: 5px;
+}
+
+.highlightColumnDesc {
+  background-color: #75514c; 
+}
+
+.highlightColumnAsc {
+  background-color: #587557; 
+}
+
+.disabledDiv {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+.rowTable {
+  text-align: left;
+}
+
+.tableAll {
+  overflow-x:auto;
+}
+
+.ticketInformationDiv {
+  text-align: center;
+  padding-top: 20px;
+}
+
+.ticketInformationTitle {
+  font-family: sans-serif;
+  font-size: 2em;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.ticketInformationTable {
+  text-align: left;
+  padding-left: 35px;
+  line-height: 25px;
+}
+
+.ticketInformationTableRow {
+  
+}
+
+.ticketInformationTableHeader {
+  color: green;
+  font-weight: bold;
+  float: left;
+}
+
+.ticketInformationTableDataColumn {
+  padding-left: 8px;
+  width: 75%;
+}
+
+.informationTicketBackButtonDiv {
+  position: fixed;                                                                                
+  right: 10%;
+  z-index: 1000;
+}
